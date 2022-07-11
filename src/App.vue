@@ -11,16 +11,18 @@ export default {
   data() {
     return {};
   },
-  created() {},
   mounted() {},
-  components: { HeaderPage },
   computed: {},
-  methods: {},
+  components: { HeaderPage },
 };
 </script>
 <style lang="scss">
 body {
   margin: 0;
+  font-family: $secondary-font;
+}
+#app {
+  width: 100%;
 }
 h1,
 h2,
@@ -28,10 +30,6 @@ h3,
 h4,
 h5 {
   font-family: $primary-font;
-}
-p,
-label,
-a {
-  font-family: $secondary-font;
+  font-weight: 400;
 }
 </style>
