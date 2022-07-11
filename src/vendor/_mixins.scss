@@ -1,0 +1,11 @@
+@function size($value) {
+  // if your default browser font size has changed from 16px, make the appropriate change below
+  $remValue: $value / 16 + rem;
+  @return $remValue;
+}
+
+@mixin flexCenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
