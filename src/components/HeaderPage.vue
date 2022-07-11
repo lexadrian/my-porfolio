@@ -1,5 +1,5 @@
 <template>
-  <header>
+  <header :class="{ headerBg: isScroll }">
     <div class="brand">
       <div class="logo">
         <img src="@/assets/logo.png" alt="" />
@@ -45,12 +45,36 @@ export default {
           path: "/",
         },
       ],
-      toggleNav: false,
+      toggleNav: false, // toggle the navigation menu in mobile
+      isScroll: false, // watch if the window is iscroll
     };
+  },
+  created() {
+    /**
+     * listen to window scroll
+     */
+    window.addEventListener("scroll", this.handleScroll);
+  },
+  destroyed() {
+    window.removeEventListener("scroll", this.handleScroll);
   },
   methods: {
     toggle() {
+      // toggle the navigation menu
       this.toggleNav = !this.toggleNav;
+    },
+    handleScroll() {
+      /**
+       * watch the window scroll
+       * if the window is scroll greater than to 10px the header will add a background color
+       * if the window scroll is less than to 10px the header will back to default
+       */
+      const scroll = (this.windowTop = window.top.scrollY);
+      if (scroll > 10) {
+        this.isScroll = true;
+      } else {
+        this.isScroll = false;
+      }
     },
   },
 };
@@ -58,6 +82,7 @@ export default {
 
 <style lang="scss" scoped>
 header {
+  transition: 0.4s ease-in-out;
   display: flex;
   padding: size(25) size(45);
   position: fixed;
@@ -105,6 +130,11 @@ header {
       }
     }
   }
+}
+.headerBg {
+  background: #000;
+  padding: size(15) size(35);
+  transition: 0.4s ease-in-out;
 }
 // media queries
 @include mobile-screen {
@@ -157,6 +187,10 @@ header {
         }
       }
     }
+  }
+  .headerBg {
+    background: #000;
+    padding: size(15) 0;
   }
 }
 .hideNav {
