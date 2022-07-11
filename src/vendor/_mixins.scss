@@ -4,6 +4,12 @@
   @return $remValue;
 }
 
+@mixin bg($url, $size: 100%, $repeat: no-repeat) {
+  background-image: url($url);
+  background-size: $size;
+  background-repeat: $repeat;
+}
+
 @mixin flexCenter {
   display: flex;
   justify-content: center;

@@ -59,7 +59,10 @@ export default {
 <style lang="scss" scoped>
 header {
   display: flex;
-  padding: size(15) size(20);
+  padding: size(25) size(45);
+  position: fixed;
+  width: 100%;
+  color: #fff;
   .hamburger {
     display: none;
   }
@@ -90,6 +93,8 @@ header {
     display: flex;
     flex: 1;
     justify-content: flex-end;
+    position: relative;
+    right: size(100);
     ul {
       list-style: none;
       li {
@@ -105,16 +110,16 @@ header {
 @include mobile-screen {
   header {
     flex-direction: column;
-    padding: size(10) 0 size(20) 0;
-    position: relative;
+    padding: size(15) 0 size(20);
+    position: fixed;
     .hamburger {
       display: block;
       width: size(20);
       height: size(20);
-      border: size(1) solid $dark-color;
+      border: size(1) solid #fff;
       position: absolute;
       right: size(15);
-      top: size(15);
+      top: size(18);
       @include flexCenter;
       justify-content: space-evenly;
       padding: 0 size(2);
@@ -123,27 +128,30 @@ header {
       div {
         display: flex;
         width: size(20);
-        border-top: size(1) solid $dark-color;
+        border-top: size(1) solid #fff;
       }
     }
     .brand {
       padding-left: size(20);
     }
     .nav {
-      justify-content: flex-start;
-      background: $dark-color;
+      background: #000;
       color: #fff;
       width: 100%;
       max-height: 0;
       overflow: hidden;
       transition: 0.4s ease-in;
-      @include flexCenter;
+      right: 0;
+      display: flex;
+
+      justify-content: flex-start;
+      align-items: flex-start;
       ul {
         li {
           &:nth-child(1) {
             margin-top: size(20);
           }
-          text-align: center;
+          text-align: left;
           margin-bottom: size(25);
           display: block;
         }
