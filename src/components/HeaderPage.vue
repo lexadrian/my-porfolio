@@ -11,7 +11,13 @@
     </div>
     <div :class="toggleNav ? 'showNav' : 'nav'">
       <ul>
-        <li v-for="(item, key) in navLink" :key="key">{{ item.name }}</li>
+        <li
+          v-for="(item, key) in navLink"
+          :key="key"
+          :class="key === 0 && 'active'"
+        >
+          {{ item.name }}
+        </li>
       </ul>
     </div>
     <div :class="[toggleNav && 'rotateHamburger', 'hamburger']" @click="toggle">
@@ -152,6 +158,11 @@ header {
         margin-right: size(20);
         padding: 0 size(10);
         cursor: pointer;
+        &.active {
+          color: $primary-color;
+          // font-weight: bold;
+          font-size: size(18);
+        }
       }
     }
   }
@@ -197,6 +208,10 @@ header {
         position: relative;
         top: size(-150);
         li {
+          font-size: size(25);
+          &.active {
+            font-size: size(25);
+          }
           &:nth-child(1) {
             margin-top: size(20);
           }
@@ -230,7 +245,6 @@ header {
     overflow: auto;
     li {
       text-align: center;
-      font-size: size(25);
     }
   }
 }

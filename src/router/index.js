@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import Vue from "vue";
 import VueRouter from "vue-router";
 
@@ -7,9 +8,10 @@ const routes = [
   {
     path: "/",
     name: "HomePage",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
+    meta: {
+      loginRequire: false,
+      title: "LAL Porfolio",
+    },
     component: () =>
       import(/* webpackChunkName: "HomePage" */ "../views/HomePage.vue"),
   },
@@ -19,6 +21,12 @@ const router = new VueRouter({
   mode: "history",
   base: process.env.BASE_URL,
   routes,
+});
+const DEFAULT_TITLE = "LAL Porfolio";
+router.afterEach((to, from, next) => {
+  Vue.nextTick(() => {
+    document.title = to.meta.title || DEFAULT_TITLE;
+  });
 });
 
 export default router;
