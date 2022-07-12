@@ -177,15 +177,25 @@ header {
       background: #000;
       color: #fff;
       width: 100%;
-      max-height: 0;
-      overflow: hidden;
-      transition: 0.4s ease-in;
       right: 0;
       display: flex;
-
       justify-content: flex-start;
       align-items: flex-start;
+      max-height: 0;
+      overflow: hidden;
+      transition: 0.4s ease-in-out;
       ul {
+        width: 100%;
+        max-height: 0;
+        height: 0;
+        transition: 0.4s ease-in-out;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        position: relative;
+        top: size(-150);
         li {
           &:nth-child(1) {
             margin-top: size(20);
@@ -207,9 +217,22 @@ header {
  */
 .showNav {
   @extend .nav;
-  max-height: size(500) !important;
+  height: 100vh !important;
+  max-height: 100vh !important;
+  transition: 0.4s ease-in-out;
   overflow: auto;
-  transition: 0.4s ease-in;
+  background: rgba($color: #000000, $alpha: 0.9) !important;
+  ul {
+    width: 100%;
+    transition: 0.4s ease-in-out;
+    height: 100vh !important;
+    max-height: 100vh !important;
+    overflow: auto;
+    li {
+      text-align: center;
+      font-size: size(25);
+    }
+  }
 }
 .rotateHamburger {
   div {
