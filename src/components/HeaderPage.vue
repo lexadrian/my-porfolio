@@ -9,12 +9,12 @@
         <p for="">Portfolio</p>
       </div>
     </div>
-    <div :class="toggleNav ? 'hideNav' : 'nav'">
+    <div :class="toggleNav ? 'showNav' : 'nav'">
       <ul>
         <li v-for="(item, key) in navLink" :key="key">{{ item.name }}</li>
       </ul>
     </div>
-    <div class="hamburger" @click="toggle">
+    <div :class="[toggleNav && 'rotateHamburger', 'hamburger']" @click="toggle">
       <div></div>
       <div></div>
       <div></div>
@@ -90,6 +90,31 @@ header {
   color: #fff;
   .hamburger {
     display: none;
+    width: size(50);
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    position: absolute;
+    right: size(15);
+    top: size(25);
+    padding: 0 size(2);
+    border-radius: size(3);
+    div {
+      border-top: size(1) solid #fff;
+      margin-bottom: size(5);
+      text-align: right;
+      position: relative;
+      transition: 0.4s ease-in-out;
+      &:nth-child(1) {
+        width: size(20);
+      }
+      &:nth-child(2) {
+        width: size(25);
+      }
+      &:nth-child(3) {
+        width: size(30);
+      }
+    }
   }
   .brand {
     display: flex;
@@ -143,23 +168,7 @@ header {
     padding: size(15) 0 size(20);
     position: fixed;
     .hamburger {
-      display: block;
-      width: size(20);
-      height: size(20);
-      border: size(1) solid #fff;
-      position: absolute;
-      right: size(15);
-      top: size(18);
-      @include flexCenter;
-      justify-content: space-evenly;
-      padding: 0 size(2);
-      flex-direction: column;
-      border-radius: size(3);
-      div {
-        display: flex;
-        width: size(20);
-        border-top: size(1) solid #fff;
-      }
+      display: flex;
     }
     .brand {
       padding-left: size(20);
@@ -193,10 +202,33 @@ header {
     padding: size(15) 0;
   }
 }
-.hideNav {
+/**
+  * this class is the speciel class for the animation
+ */
+.showNav {
   @extend .nav;
-  max-height: size(250) !important;
+  max-height: size(500) !important;
   overflow: auto;
   transition: 0.4s ease-in;
+}
+.rotateHamburger {
+  div {
+    transition: 0.4s ease-in-out;
+    &:nth-child(1) {
+      width: size(20) !important;
+      transform: rotate(53deg);
+    }
+    &:nth-child(2) {
+      width: size(0) !important;
+      transform: rotate(129deg);
+      position: absolute !important;
+      top: 0;
+    }
+    &:nth-child(3) {
+      width: size(20) !important;
+      transform: rotate(129deg);
+      top: -6px;
+    }
+  }
 }
 </style>
