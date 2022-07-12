@@ -235,6 +235,7 @@ header {
   }
 }
 .rotateHamburger {
+  top: size(35) !important;
   div {
     transition: 0.4s ease-in-out;
     &:nth-child(1) {
